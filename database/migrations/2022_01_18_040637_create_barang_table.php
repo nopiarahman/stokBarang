@@ -22,6 +22,7 @@ class CreateBarangTable extends Migration
             $table->string('jumlah')->nullable();
             $table->string('ukuran')->nullable();
             $table->string('berat')->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

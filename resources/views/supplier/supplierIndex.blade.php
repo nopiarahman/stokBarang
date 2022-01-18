@@ -18,7 +18,7 @@
             {{-- Tambah Data --}}
             <div>
               <div class="col">
-                <a class="btn btn-primary btn-sm " href="/supplier/tambah" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
+                <a class="btn btn-primary btn-sm " href="{{route('supplierTambah')}}" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
                 <br>
             </div>
             

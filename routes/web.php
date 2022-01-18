@@ -24,7 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 Route::group(['middleware'=>['auth','role:admin']],function(){
     Route::get('/barang',[ BarangController::class,'index'])->name('barang');
-    Route::get('/barang/tambah',[ BarangController::class,'create']);
+    Route::get('/barang/tambah',[ BarangController::class,'create'])->name('barangTambah');
     Route::get('/barang/{id}',[ BarangController::class,'edit'])->name('barangEdit');
     Route::get('/cariBarang',[ BarangController::class,'cari'])->name('cariBarang');
     Route::post('/barang',[ BarangController::class,'store'])->name('barangSimpan');
@@ -32,8 +32,8 @@ Route::group(['middleware'=>['auth','role:admin']],function(){
     Route::patch('/barang/{id}',[ BarangController::class,'update'])->name('barangUpdate');
     
     Route::get('/supplier',[ SupplierController::class,'index'])->name('supplier');
+    Route::get('/supplier/tambah',[ SupplierController::class,'create'])->name('supplierTambah');
     Route::get('/supplier/{id}',[ SupplierController::class,'edit'])->name('supplierEdit');
-    Route::get('/supplier/tambah',[ SupplierController::class,'create']);
     Route::post('/supplier',[ SupplierController::class,'store'])->name('supplierSimpan');
     Route::patch('/supplier/{id}',[ SupplierController::class,'update'])->name('supplierUpdate');
     Route::delete('/supplier/{id}',[ SupplierController::class,'destroy'])->name('supplierHapus');

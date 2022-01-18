@@ -40,9 +40,12 @@
                       <label for="berat">Berat</label>
                       <input value="{{old('berat')}}" name="berat" type="text" class="form-control bg-light"
                           id="berat">
-                      <label for="lokasi">Lokasi</label>
+                      <label for="lokasi">Lokasi Barang</label>
                       <input value="{{old('lokasi')}}" name="lokasi" type="text" class="form-control bg-light"
                           id="lokasi">
+                      <label for="foto">Foto Barang</label>
+                      <input value="{{old('foto')}}" name="foto" type="file" class="form-control bg-light"
+                          id="foto">
                   </div>
               </div>
               <hr>

@@ -46,7 +46,7 @@
                             <td>{{$b->jumlah}}</td>
                             <td>{{$b->kategori}}</td>
                             <td>{{$b->lokasi}}</td>
-                            <td>foto</td>
+                            <td><img src="" alt=""></td>
                             <td>
                                 <a href="barang/{{$b->id}}" class="btn btn-info btn-sm"><i class="fas fa-pen"></i>Edit</a>
                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter"

@@ -22,6 +22,12 @@ class BarangController extends Controller
             'nama'   => 'required',
         ]);
         $requestData = $request->all();
+        if ($request->hasFile('foto')) {
+            $file_nama            = $request->file('foto')->store('public/barang/foto');
+            $requestData['foto'] = $file_nama;
+        } else {
+            unset($requestData['foto']);
+        }
         barang::create($requestData);
         return redirect()->route('barang')->with('sukses','Data Berhasil Disimpan');
     }
