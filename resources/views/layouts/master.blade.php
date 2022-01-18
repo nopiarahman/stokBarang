@@ -156,7 +156,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <div class="row">
                                     <div class="col-2">
@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="/supplier" class="nav-link @yield('menuSupplier')">
                                 <div class="row">
