@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\barang;
 use App\Models\masukBarang;
 use Illuminate\Support\Facades\DB;
+use Image;
 
 class BarangController extends Controller
 {
@@ -25,8 +26,15 @@ class BarangController extends Controller
         if ($request->hasFile('foto')) {
             $file_nama            = $request->file('foto')->store('public/barang/foto');
             $requestData['foto'] = $file_nama;
+            
+            $thumbnail = Image::make($request->file('foto'));
+            $thumbnail->resize(100, 100, function ($constraint) {
+                $constraint->aspectRatio();
+            })->store('public/barang/thumbnail');
+            $requestData['thumbnail'] = $thumbnail;
         } else {
             unset($requestData['foto']);
+            unset($requestData['thumbnail']);
         }
         barang::create($requestData);
         return redirect()->route('barang')->with('sukses','Data Berhasil Disimpan');

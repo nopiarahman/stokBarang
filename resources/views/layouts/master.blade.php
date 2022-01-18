@@ -135,7 +135,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                    <a href="/barang" class="nav-link @yield('menuStok')">
+                                    <a href="/barang" class="nav-link @yield('menuKeluar')">
                                         <i class="far fa-envelope-open nav-icon"></i>
                                         <p>Barang Keluar</p>
                                     </a>
@@ -143,7 +143,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="/barang" class="nav-link">
+                            <a href="/barang" class="nav-link @yield('menuStok')">
                                 <div class="row">
                                     <div class="col-2">
                                         <i class="fas fa-users" aria-hidden="true"></i>
@@ -245,7 +245,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>sistem pendataan penjualan dan stok barang Van trophy</b>
             </div>
-            Copyright &copy; 2020 | by : Satria Duta
+            Copyright &copy; 2021 | by : Satria Duta
         </footer>
 
         <!-- Control Sidebar -->

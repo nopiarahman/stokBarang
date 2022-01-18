@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@section('menuBarang','active')
 @section('menuStok','active')
 @section('content')
     <section class="content card" style="padding: 10px 10px 10px 10px ">
