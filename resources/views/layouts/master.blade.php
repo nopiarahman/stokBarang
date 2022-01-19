@@ -201,7 +201,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('profile.show') }}" class="nav-link @yield('menuUser')">
+                            <a href="{{ route('profile.show') }}" class="nav-link @yield('menuPengaturan')">
                                 <div class="row">
                                     <div class="col-2">
                                         <i class="fas fa-cogs    "></i>
