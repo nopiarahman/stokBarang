@@ -20,4 +20,8 @@ class barang extends Model
     {
         return $this->hasOne(masukBarang::class);
     }
+    public function keluarBarang()
+    {
+        return $this->hasOne(masukBarang::class);
+    }
 }

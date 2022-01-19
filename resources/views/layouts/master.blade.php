@@ -113,7 +113,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
+                        <li class="nav-item has-treeview @yield('open')">
                             <a href="#" class="nav-link @yield('menuBarang')">
                                 <div class="row">
                                     <div class="col-2">
@@ -135,7 +135,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item ml-3">
-                                    <a href="/barang" class="nav-link @yield('menuKeluar')">
+                                    <a href="/keluar" class="nav-link @yield('menuKeluar')">
                                         <i class="far fa-envelope-open nav-icon"></i>
                                         <p>Barang Keluar</p>
                                     </a>
@@ -185,10 +185,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/user" class="nav-link @yield('menuUser')">
                                 <div class="row">
                                     <div class="col-2">
-                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <i class="fa fa-user " aria-hidden="true"></i>
                                     </div>
                                     <div class="col-9">
                                         <p>
@@ -200,7 +200,7 @@
                         </li>
                         
                 @endif
-                @if (auth()->user()->role == 'pelanggan')
+                @if (auth()->user()->role == 'Karyawan')
                         
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">

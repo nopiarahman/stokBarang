@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\supplier;
+use App\Models\barang;
 
 class SupplierController extends Controller
 {
     public function index(){
         $supplier = supplier::latest()->get();
-        // dd($barang);
+        $label = barang::select('nama')->get()->toArray();
+        // dd($label);
         return view('supplier.supplierIndex',compact('supplier'));
     }
     public function create(){

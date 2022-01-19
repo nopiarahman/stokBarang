@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,7 @@ Route::group(['middleware'=>['auth','role:admin']],function(){
     Route::get('/barang/{id}',[ BarangController::class,'edit'])->name('barangEdit');
     Route::get('/cariBarang',[ BarangController::class,'cari'])->name('cariBarang');
     Route::post('/barang',[ BarangController::class,'store'])->name('barangSimpan');
+    Route::get('/barangCetak',[ BarangController::class,'cetak'])->name('barangCetak');
     Route::delete('/barang/{id}',[ BarangController::class,'destroy'])->name('barangHapus');
     Route::patch('/barang/{id}',[ BarangController::class,'update'])->name('barangUpdate');
     
@@ -41,4 +43,16 @@ Route::group(['middleware'=>['auth','role:admin']],function(){
     
     Route::get('/masuk',[ BarangController::class,'masuk'])->name('masuk');
     Route::post('/masuk',[ BarangController::class,'masukSimpan'])->name('barangMasukSimpan');
+    Route::delete('/masukHapus/{id}',[ BarangController::class,'masukHapus'])->name('barangMasukHapus');
+    Route::get('/keluar',[ BarangController::class,'keluar'])->name('keluar');
+    Route::post('/keluar',[ BarangController::class,'keluarSimpan'])->name('barangKeluarSimpan');
+    Route::delete('/keluarHapus/{id}',[ BarangController::class,'keluarHapus'])->name('barangKeluarHapus');
+    
+    Route::get('/user',[ UserController::class,'index'])->name('userIndex');
+    Route::get('/user/tambah',[ UserController::class,'create'])->name('userTambah');
+    Route::patch('/user/{id}',[ UserController::class,'update'])->name('userUpdate');
+    Route::get('/user/{id}',[ UserController::class,'edit'])->name('userEdit');
+    Route::post('/user',[ UserController::class,'store'])->name('userSimpan');
+    Route::delete('/userHapus/{id}',[ UserController::class,'destroy'])->name('userHapus');
+
 });

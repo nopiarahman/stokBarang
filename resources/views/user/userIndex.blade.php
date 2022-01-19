@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('menuStok','active')
+@section('menuUser','active')
 @section('content')
     <section class="content card" style="padding: 10px 10px 10px 10px ">
         <div class="box">
@@ -10,7 +10,7 @@
                 @endif
             <div class="row">
                 <div class="col">
-                <h3><i class="fas fa-boxes   m-2 "></i>Daftar Stok Barang</h3>
+                <h3> <i class="fas fa-user    "></i> Daftar User</h3>
                 <hr>
             </div>
             </div>
@@ -18,8 +18,8 @@
             {{-- Tambah Data --}}
             <div>
               <div class="col">
-                <a class="btn btn-primary btn-sm " href="{{route('barangTambah')}}" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
-                <a class="btn btn-warning btn-sm ml-2" href="{{route('barangCetak')}}" role="button"> <i class="fas fa-file-pdf    "></i> Print PDF</a>
+                <a class="btn btn-primary btn-sm " href="{{route('userTambah')}}" role="button">
+                    <i class="fas fa-plus"></i> Tambah Data</a>
                 <br>
             </div>
             
@@ -30,28 +30,24 @@
                     <thead>
                         <tr class="bg-light">
                         <th>No.</th>
-                        <th>Nama Barang</th>
-                        <th>Stok Barang</th>
-                        <th>Kategori</th>
-                        <th>Lokasi Barang</th>
-                        <th>Foto Barang</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Hak Akses</th>
                         <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($barang as $b)
+                        @forelse($user as $s)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$b->nama}}</td>
-                            <td>{{$b->jumlah}}</td>
-                            <td>{{$b->kategori}}</td>
-                            <td>{{$b->lokasi}}</td>
-                            <td><img src="{{Storage::url($b->foto)}}" alt="" width="150px"></td>
+                            <td>{{$s->name}}</td>
+                            <td>{{$s->email}}</td>
+                            <td>{{$s->role}}</td>
                             <td>
-                                <a href="barang/{{$b->id}}" class="btn btn-info btn-sm"><i class="fas fa-pen"></i>Edit</a>
+                                <a href="{{route('userEdit',['id'=>$s->id])}}" class="btn btn-info btn-sm"><i class="fas fa-pen"></i>Edit</a>
                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter"
-                                    data-id="{{$b->id}}"
-                                    data-nama="{{$b->nama}}"
+                                    data-id="{{$s->id}}"
+                                    data-nama="{{$s->nama}}"
                                 > <i class="fas fa-trash" aria-hidden="true"></i> Hapus</button>
                                 {{-- href="{{route('asetBergerakDelete',['id'=>$ab->id])}}" --}}
                             </td>
@@ -72,7 +68,7 @@
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Hapus Barang</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Hapus</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -100,7 +96,7 @@
                 var nama = button.data('nama')
                 var modal = $(this)
                 modal.find('.modal-text').text('Yakin ingin menghapus  ' + nama + ' ?')
-                document.getElementById('formHapus').action='/barang/'+id;
+                document.getElementById('formHapus').action='/userHapus/'+id;
             })
         });
     </script>
