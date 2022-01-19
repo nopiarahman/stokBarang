@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 Route::group(['middleware'=>['auth','role:admin,karyawan']],function(){
     Route::get('/barang',[ BarangController::class,'index'])->name('barang');
+    Route::get('/stok',[ BarangController::class,'stok'])->name('stok');
     Route::get('/barang/tambah',[ BarangController::class,'create'])->name('barangTambah');
     Route::get('/barang/{id}',[ BarangController::class,'edit'])->name('barangEdit');
     Route::get('/cariBarang',[ BarangController::class,'cari'])->name('cariBarang');
@@ -42,9 +43,11 @@ Route::group(['middleware'=>['auth','role:admin,karyawan']],function(){
     Route::get('/cariSupplier',[ SupplierController::class,'cari'])->name('cariSupplier');
     
     Route::get('/masuk',[ BarangController::class,'masuk'])->name('masuk');
+    Route::get('/masukCetak',[ BarangController::class,'masukCetak'])->name('masukCetak');
     Route::post('/masuk',[ BarangController::class,'masukSimpan'])->name('barangMasukSimpan');
     Route::delete('/masukHapus/{id}',[ BarangController::class,'masukHapus'])->name('barangMasukHapus');
     Route::get('/keluar',[ BarangController::class,'keluar'])->name('keluar');
+    Route::get('/keluarCetak',[ BarangController::class,'keluarCetak'])->name('keluarCetak');
     Route::post('/keluar',[ BarangController::class,'keluarSimpan'])->name('barangKeluarSimpan');
     Route::delete('/keluarHapus/{id}',[ BarangController::class,'keluarHapus'])->name('barangKeluarHapus');
     

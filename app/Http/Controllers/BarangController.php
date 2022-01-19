@@ -16,6 +16,10 @@ class BarangController extends Controller
         $barang = barang::latest()->get();
         return view('barang.barangIndex',compact('barang'));
     }
+    public function stok(){
+        $barang = barang::orderBy('nama')->get();
+        return view('barang.stokIndex',compact('barang'));
+    }
     public function create(){
         return view('barang.barangTambah');
     }
@@ -60,12 +64,18 @@ class BarangController extends Controller
                                                 ->get();
             return response()->json($data);
         }
-        
     }
     /* barang Masuk */
     public function masuk(){
         $barangMasuk = masukBarang::latest()->get();
         return view('masuk.masukIndex',compact('barangMasuk'));        
+    }
+    public function masukCetak(){
+        $barangMasuk = masukBarang::latest()->get();
+        // return view('masuk.masukIndex',compact('barangMasuk'));    
+        $pdf=PDF::loadview('masuk.masukCetak',compact('barangMasuk'))->setPaper('A4','portait');
+        return $pdf->download('Riwayat Barang Masuk Van Trophy .pdf');
+
     }
     public function masukSimpan(Request $request){
         $request->validate([
@@ -105,6 +115,11 @@ class BarangController extends Controller
         $barangKeluar = keluarBarang::latest()->get();
         return view('keluar.keluarIndex',compact('barangKeluar'));        
     }
+    public function keluarCetak(){
+        $barangKeluar = keluarBarang::latest()->get();
+        $pdf=PDF::loadview('keluar.keluarCetak',compact('barangKeluar'))->setPaper('A4','portait');
+        return $pdf->download('Riwayat Barang Keluar Van Trophy .pdf');
+    }
     public function keluarSimpan(Request $request){
         $request->validate([
             'barang_id'   => 'required',
@@ -132,4 +147,5 @@ class BarangController extends Controller
         $pdf=PDF::loadview('barang.barangCetak',compact('barang'))->setPaper('A4','portait');
         return $pdf->download('Daftar Stok Barang Van Trophy .pdf');
     }
+
 }

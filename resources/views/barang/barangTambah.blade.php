@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('menuStok','active')
+@section('menuBarang','active')
 @section('content')
 <section class="content card" style="padding: 10px 10px 10px 10px ">
     <div class="box">
@@ -21,10 +21,10 @@
                   <div class="col-6">
                       <label for="nama">Nama</label>
                       <input value="{{old('nama')}}" name="nama" type="text" class="form-control bg-light"
-                          id="nama">
+                          id="nama" required>
                       <label for="spesifikasi">Spesifikasi</label>
                       <input value="{{old('spesifikasi')}}" name="spesifikasi" type="text" class="form-control bg-light"
-                              id="spesifikasi">
+                              id="spesifikasi" required>
                       <label for="kategori">Kategori</label>
                       <input value="{{old('kategori')}}" name="kategori" type="text" class="form-control bg-light"
                                       id="kategori">
@@ -42,10 +42,10 @@
                           id="berat">
                       <label for="lokasi">Lokasi Barang</label>
                       <input value="{{old('lokasi')}}" name="lokasi" type="text" class="form-control bg-light"
-                          id="lokasi">
+                          id="lokasi" required>
                       <label for="foto">Foto Barang</label>
                       <input value="{{old('foto')}}" name="foto" type="file" class="form-control bg-light"
-                          id="foto">
+                          id="foto" required>
                   </div>
               </div>
               <hr>

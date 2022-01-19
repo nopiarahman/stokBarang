@@ -1,6 +1,4 @@
 @extends('layouts.master')
-@section('open','menu-open')
-@section('menuBarang','active')
 @section('menuMasuk','active')
 @section('head')
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
@@ -33,7 +31,7 @@
                       <input value="{{old('tanggalMasuk')}}" name="tanggalMasuk" type="datetime-local" class="form-control bg-light"
                           id="tanggalMasuk" required>
                       <label for="barang_id">Nama Barang</label>
-                      <select class="cari form-control bg-light" name="barang_id"></select>
+                      <select class="cari form-control bg-light" name="barang_id" required></select>
                         {{-- <input type="text" class="form-control @error('objek') is-invalid @enderror" name="objek" value="{{old('objek')}}"> --}}
                         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
@@ -62,7 +60,7 @@
                   </div>
                   <div class="col-6">
                     <label for="supplier_id">Nama Supplier</label>
-                    <select class="cariSupplier form-control bg-light" name="supplier_id"></select>
+                    <select class="cariSupplier form-control bg-light" name="supplier_id" required></select>
                         {{-- <input type="text" class="form-control @error('objek') is-invalid @enderror" name="objek" value="{{old('objek')}}"> --}}
                         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
@@ -102,6 +100,11 @@
     <div class=" card mt-5" style="padding: 10px 10px 10px 10px ">
         <div class="box">
                 <h4> <i class="fas fa-history    "></i> Riwayat Barang Masuk</h4>
+                <div>
+                    <div class="col">
+                      <a class="btn btn-warning btn-sm" href="{{route('masukCetak')}}" role="button"> <i class="fas fa-file-pdf    "></i> Print PDF</a>
+                      <br>
+                  </div>
             <div class="row table-responsive mt-3">
                 <div class="col">
                 <table class="table table-hover table-head-fixed table-striped table-bordered" id="table">

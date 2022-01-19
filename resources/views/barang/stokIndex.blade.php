@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('menuBarang','active')
+@section('menuStok','active')
 @section('content')
     <section class="content card" style="padding: 10px 10px 10px 10px ">
         <div class="box">
@@ -10,7 +10,7 @@
                 @endif
             <div class="row">
                 <div class="col">
-                <h3><i class="fas fa-boxes   m-2 "></i>Daftar Barang</h3>
+                <h3><i class="fas fa-boxes   m-2 "></i>Daftar Stok Barang</h3>
                 <hr>
             </div>
             </div>
@@ -18,10 +18,7 @@
             {{-- Tambah Data --}}
             <div>
               <div class="col">
-                @if (auth()->user()->role == 'admin')
-                <a class="btn btn-primary btn-sm " href="{{route('barangTambah')}}" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
-                @endif
-                {{-- <a class="btn btn-warning btn-sm ml-2" href="{{route('barangCetak')}}" role="button"> <i class="fas fa-file-pdf    "></i> Print PDF</a> --}}
+                <a class="btn btn-warning btn-sm ml-2" href="{{route('barangCetak')}}" role="button"> <i class="fas fa-file-pdf    "></i> Print PDF</a>
                 <br>
             </div>
             

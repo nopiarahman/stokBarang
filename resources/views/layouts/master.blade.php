@@ -116,40 +116,53 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview @yield('open')">
-                            <a href="#" class="nav-link @yield('menuBarang')">
+                        <li class="nav-item">
+                            <a href="/barang" class="nav-link @yield('menuBarang')">
                                 <div class="row">
                                     <div class="col-2">
                                         <i class="fas fa-boxes    "></i>
                                     </div>
                                     <div class="col-9">
                                         <p>
-                                            Transaksi
+                                            Data Barang
                                         </p>
                                     </div>
-                                    <i class="right fas fa-angle-left"></i>
                                 </div>
                             </a>
-                            <ul class="nav nav-treeview ">
-                                <li class="nav-item ml-3 ">
-                                    <a href="/masuk" class="nav-link  @yield('menuMasuk')">
-                                        <i class="far fa-envelope nav-icon"></i>
-                                        <p>Barang Masuk</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item ml-3">
-                                    <a href="/keluar" class="nav-link @yield('menuKeluar')">
-                                        <i class="far fa-envelope-open nav-icon"></i>
-                                        <p>Barang Keluar</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="/barang" class="nav-link @yield('menuStok')">
+                            <a href="/masuk" class="nav-link @yield('menuMasuk')">
                                 <div class="row">
                                     <div class="col-2">
-                                        <i class="fas fa-users" aria-hidden="true"></i>
+                                        <i class="fas fa-inbox    "></i>
+                                    </div>
+                                    <div class="col-9">
+                                        <p>
+                                            Barang Masuk
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/keluar" class="nav-link @yield('menuKeluar')">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <i class="fas fa-box-open    "></i>
+                                    </div>
+                                    <div class="col-9">
+                                        <p>
+                                            Barang Keluar
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/stok" class="nav-link @yield('menuStok')">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <i class="fas fa-box    "></i>
                                     </div>
                                     <div class="col-9">
                                         <p>
@@ -159,20 +172,6 @@
                                 </div>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <i class="nav-icon fas fa-mail-bulk"></i>
-                                    </div>
-                                    <div class="col-9">
-                                        <p>
-                                            Pembelian
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li> --}}
                         <li class="nav-item">
                             <a href="/supplier" class="nav-link @yield('menuSupplier')">
                                 <div class="row">
@@ -201,6 +200,20 @@
                                 </div>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('profile.show') }}" class="nav-link @yield('menuUser')">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <i class="fas fa-cogs    "></i>
+                                    </div>
+                                    <div class="col-9">
+                                        <p>
+                                            Pengaturan
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
                         
                 @endif
                 @if (auth()->user()->role == 'karyawan')
@@ -218,29 +231,6 @@
                                 </div>
                             </a>
                         </li>
-                        {{-- <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Permintaan Aset
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/permintaanAset" class="nav-link">
-                                        <i class="far fa-envelope nav-icon"></i>
-                                        <p>Baru</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/permintaanAset/diterima" class="nav-link">
-                                        <i class="far fa-envelope-open nav-icon"></i>
-                                        <p>Disetujui</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> --}}
                 @endif
                 </nav>
                 <!-- /.sidebar-menu -->

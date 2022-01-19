@@ -1,6 +1,4 @@
 @extends('layouts.master')
-@section('open','menu-open')
-@section('menuBarang','active')
 @section('menuKeluar','active')
 @section('head')
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
@@ -80,7 +78,11 @@
     </div>
     <div class=" card mt-5" style="padding: 10px 10px 10px 10px ">
         <div class="box">
-                <h4> <i class="fas fa-history    "></i> Riwayat Transaksi Keluar</h4>
+            <h4> <i class="fas fa-history    "></i> Riwayat Transaksi Keluar</h4>
+            <div class="col">
+                <a class="btn btn-warning btn-sm" href="{{route('keluarCetak')}}" role="button"> <i class="fas fa-file-pdf    "></i> Print PDF</a>
+                <br>
+            </div>
             <div class="row table-responsive mt-3">
                 <div class="col">
                 <table class="table table-hover table-head-fixed table-striped table-bordered" id="table">
