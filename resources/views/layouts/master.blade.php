@@ -218,6 +218,20 @@
                 @endif
                 @if (auth()->user()->role == 'karyawan')
                         <li class="nav-item">
+                            <a href="/barang" class="nav-link @yield('menuBarang')">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <i class="fas fa-boxes    "></i>
+                                    </div>
+                                    <div class="col-9">
+                                        <p>
+                                            Data Barang
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/barang" class="nav-link @yield('menuStok')">
                                 <div class="row">
                                     <div class="col-2">
