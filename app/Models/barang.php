@@ -22,6 +22,6 @@ class barang extends Model
     }
     public function keluarBarang()
     {
-        return $this->hasOne(masukBarang::class);
+        return $this->hasOne(keluarBarang::class);
     }
 }

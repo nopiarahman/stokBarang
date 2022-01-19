@@ -52,12 +52,12 @@
             </div>
             
         </form>
-        <div class="flex items-center justify-center mt-4">
+        {{-- <div class="flex items-center justify-center mt-4">
             <span class="text-sm text-gray-700 dark:text-gray-500">
                 Belum Punya Akun? 
             </span>
             <a href="{{ route('register') }}" class=" text-sm text-gray-700 dark:text-gray-500 underline"> Daftar</a>
-        </div>
+        </div> --}}
         
     </x-jet-authentication-card>
 </x-guest-layout>
