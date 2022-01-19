@@ -34,9 +34,11 @@
                             <div class="icon">
                                 <i class="nav-icon fas fa-envelope-open-text"></i>
                             </div>
-                            <a href="/suratmasuk/index" class="small-box-footer bg-success">Lihat Detail <i
+                            <a href="/barang" class="small-box-footer bg-success">Lihat Detail <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
+                        @if (auth()->user()->role == 'admin')
+                        
                         <div class="small-box bg-light">
                             <div class="inner">
                                 <h3>{{DB::table('supplier')->count()}}</h3>
@@ -45,9 +47,10 @@
                             <div class="icon">
                                 <i class="nav-icon fas fa-layer-group"></i>
                             </div>
-                            <a href="/sifat/index" class="small-box-footer bg-success">Lihat Detail <i
+                            <a href="/supplier" class="small-box-footer bg-success">Lihat Detail <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
+                        @endif
                     </div>
                     <div class="col-lg-7 col-12">
                         <div id="chart" style="height: 500px;"></div>
