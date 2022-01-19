@@ -17,11 +17,13 @@ class ChartBarang extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        $label = barang::select('nama')->get()->implode('nama', ', ');
-        $dataset = barang::select('jumlah')->get()->implode('jumlah', ', ');
-        // dd($dataset);
+        $label = barang::select('nama')->get()->toArray();
+        $dataset = barang::select('jumlah')->get()->toArray();
+        $nama = array_column($label,'nama');
+        $data = array_column($dataset,'jumlah');
+        // dd($nama);
         return Chartisan::build()
-            ->labels([$label])
-            ->dataset('Stok', [$dataset]);
+            ->labels($nama)
+            ->dataset('Stok', $data);
     }
 }
