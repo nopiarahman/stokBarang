@@ -203,9 +203,22 @@
                         </li>
                         
                 @endif
-                @if (auth()->user()->role == 'Karyawan')
-                        
-                        <li class="nav-item has-treeview">
+                @if (auth()->user()->role == 'karyawan')
+                        <li class="nav-item">
+                            <a href="/barang" class="nav-link @yield('menuStok')">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <i class="fas fa-users" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-9">
+                                        <p>
+                                            Stok Barang
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
@@ -227,7 +240,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                 @endif
                 </nav>
                 <!-- /.sidebar-menu -->

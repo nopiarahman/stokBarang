@@ -18,7 +18,9 @@
             {{-- Tambah Data --}}
             <div>
               <div class="col">
+                @if (auth()->user()->role == 'admin')
                 <a class="btn btn-primary btn-sm " href="{{route('barangTambah')}}" role="button"><i class="fas fa-plus"></i> Tambah Data</a>
+                @endif
                 <a class="btn btn-warning btn-sm ml-2" href="{{route('barangCetak')}}" role="button"> <i class="fas fa-file-pdf    "></i> Print PDF</a>
                 <br>
             </div>
