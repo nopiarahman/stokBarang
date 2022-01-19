@@ -23,7 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 
 })->name('dashboard');
-Route::group(['middleware'=>['auth','role:admin']],function(){
+Route::group(['middleware'=>['auth','role:admin,karyawan']],function(){
     Route::get('/barang',[ BarangController::class,'index'])->name('barang');
     Route::get('/barang/tambah',[ BarangController::class,'create'])->name('barangTambah');
     Route::get('/barang/{id}',[ BarangController::class,'edit'])->name('barangEdit');
@@ -55,14 +55,4 @@ Route::group(['middleware'=>['auth','role:admin']],function(){
     Route::post('/user',[ UserController::class,'store'])->name('userSimpan');
     Route::delete('/userHapus/{id}',[ UserController::class,'destroy'])->name('userHapus');
 
-});
-Route::group(['middleware'=>['auth','role:karyawan']],function(){
-    Route::get('/barang',[ BarangController::class,'index'])->name('barang');
-    Route::get('/barang/tambah',[ BarangController::class,'create'])->name('barangTambah');
-    Route::get('/barang/{id}',[ BarangController::class,'edit'])->name('barangEdit');
-    Route::get('/cariBarang',[ BarangController::class,'cari'])->name('cariBarang');
-    Route::post('/barang',[ BarangController::class,'store'])->name('barangSimpan');
-    Route::get('/barangCetak',[ BarangController::class,'cetak'])->name('barangCetak');
-    Route::delete('/barang/{id}',[ BarangController::class,'destroy'])->name('barangHapus');
-    Route::patch('/barang/{id}',[ BarangController::class,'update'])->name('barangUpdate');
 });
