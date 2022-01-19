@@ -2,8 +2,11 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
+            <div class="" style="width: 100%;display:flex;justify-content:center;margin-bottom:20pt">
+                <img src="{{asset('/img/logo-sm.png')}}" alt="" width="500px" class="mb-5">
+            </div>
             <h3 style="font-size: 20pt; text-align:center">Sistem Penjualan dan Pengolahan Data Stok Barang </h3>
-            <h1 style="font-size: 50pt; font-weight:bold; text-align:center">Van Trophy</h1>
+            {{-- <h1 style="font-size: 50pt; font-weight:bold; text-align:center">Van Trophy</h1> --}}
             {{-- <x-jet-authentication-card-logo /> --}}
         </x-slot>
 
@@ -14,7 +17,7 @@
                 {{ session('status') }}
             </div>
         @endif
-
+            
         <form method="POST" action="{{ route('login') }}">
             @csrf
 

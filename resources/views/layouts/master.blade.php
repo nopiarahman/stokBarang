@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="{{asset('BMKG.png')}}">
+    <link rel="icon" href="{{asset('img/logo-sm.png')}}">
     <title>Van Trophy</title>
     <!-- <style>
         body{
@@ -94,6 +94,9 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
+                    <div class="d-flex" style="width: 100%;justify-content:center;">
+                        <img src="{{asset('/img/logo-sm.png')}}" alt="" width="200px" class="mb-5">
+                    </div>
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
