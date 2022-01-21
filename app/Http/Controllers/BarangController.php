@@ -9,6 +9,7 @@ use App\Models\keluarBarang;
 use Illuminate\Support\Facades\DB;
 use Image;
 use PDF;
+use Carbon\Carbon;
 
 class BarangController extends Controller
 {
@@ -66,13 +67,24 @@ class BarangController extends Controller
         }
     }
     /* barang Masuk */
-    public function masuk(){
-        $barangMasuk = masukBarang::latest()->get();
-        return view('masuk.masukIndex',compact('barangMasuk'));        
+    public function masuk(Request $request){
+        $start = Carbon::now()->firstOfMonth()->isoFormat('YYYY-MM-DD');
+        $end = Carbon::now()->endOfMonth()->isoFormat('YYYY-MM-DD');
+        if($request->get('filter')){
+            $start = Carbon::parse($request->start)->isoFormat('YYYY-MM-DD');
+            $end = Carbon::parse($request->end)->isoFormat('YYYY-MM-DD');
+        }
+        $barangMasuk = masukBarang::whereBetween('tanggalMasuk',[$start,$end])->get();
+        return view('masuk.masukIndex',compact('barangMasuk','start','end'));        
     }
-    public function masukCetak(){
-        $barangMasuk = masukBarang::latest()->get();
-        // return view('masuk.masukIndex',compact('barangMasuk'));    
+    public function masukCetak(Request $request){
+        $start = Carbon::now()->firstOfMonth()->isoFormat('YYYY-MM-DD');
+        $end = Carbon::now()->endOfMonth()->isoFormat('YYYY-MM-DD');
+        if($request->get('filter')){
+            $start = Carbon::parse($request->start)->isoFormat('YYYY-MM-DD');
+            $end = Carbon::parse($request->end)->isoFormat('YYYY-MM-DD');
+        }
+        $barangMasuk = masukBarang::whereBetween('tanggalMasuk',[$start,$end])->get();
         $pdf=PDF::loadview('masuk.masukCetak',compact('barangMasuk'))->setPaper('A4','portait');
         return $pdf->download('Riwayat Barang Masuk Van Trophy .pdf');
 
@@ -111,12 +123,24 @@ class BarangController extends Controller
         return redirect()->back()->with('sukses','Transaksi Berhasil Dihapus');
     }
     /* barang keluar */
-    public function keluar(){
-        $barangKeluar = keluarBarang::latest()->get();
-        return view('keluar.keluarIndex',compact('barangKeluar'));        
+    public function keluar(Request $request){
+        $start = Carbon::now()->firstOfMonth()->isoFormat('YYYY-MM-DD');
+        $end = Carbon::now()->endOfMonth()->isoFormat('YYYY-MM-DD');
+        if($request->get('filter')){
+            $start = Carbon::parse($request->start)->isoFormat('YYYY-MM-DD');
+            $end = Carbon::parse($request->end)->isoFormat('YYYY-MM-DD');
+        }
+        $barangKeluar = keluarBarang::whereBetween('tanggal',[$start,$end])->get();
+        return view('keluar.keluarIndex',compact('barangKeluar','start','end'));        
     }
-    public function keluarCetak(){
-        $barangKeluar = keluarBarang::latest()->get();
+    public function keluarCetak(Request $request){
+        $start = Carbon::now()->firstOfMonth()->isoFormat('YYYY-MM-DD');
+        $end = Carbon::now()->endOfMonth()->isoFormat('YYYY-MM-DD');
+        if($request->get('filter')){
+            $start = Carbon::parse($request->start)->isoFormat('YYYY-MM-DD');
+            $end = Carbon::parse($request->end)->isoFormat('YYYY-MM-DD');
+        }
+        $barangKeluar = keluarBarang::whereBetween('tanggal',[$start,$end])->get();
         $pdf=PDF::loadview('keluar.keluarCetak',compact('barangKeluar'))->setPaper('A4','portait');
         return $pdf->download('Riwayat Barang Keluar Van Trophy .pdf');
     }

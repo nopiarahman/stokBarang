@@ -21,7 +21,7 @@
                 <a class="btn btn-warning btn-sm ml-2" href="{{route('barangCetak')}}" role="button"> <i class="fas fa-file-pdf    "></i> Print PDF</a>
                 <br>
             </div>
-            
+           
           </div>
             <div class="row table-responsive mt-3">
                 <div class="col">
@@ -31,9 +31,9 @@
                         <th>No.</th>
                         <th>Nama Barang</th>
                         <th>Stok Barang</th>
-                        <th>Kategori</th>
+                        {{-- <th>Kategori</th> --}}
                         <th>Lokasi Barang</th>
-                        <th>Foto Barang</th>
+                        {{-- <th>Foto Barang</th> --}}
                         <th>Aksi</th>
                         </tr>
                     </thead>
@@ -42,10 +42,14 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$b->nama}}</td>
-                            <td>{{$b->jumlah}}</td>
-                            <td>{{$b->kategori}}</td>
+                            @if($b->jumlah >10)
+                            <td><span class="badge badge-primary"><h4>{{$b->jumlah}}</h4></span></td>
+                            @else
+                            <td><span class="badge badge-warning"><h4>{{$b->jumlah}}</h4></span></td>
+                            @endif
+                            {{-- <td>{{$b->kategori}}</td> --}}
                             <td>{{$b->lokasi}}</td>
-                            <td><img src="{{Storage::url($b->foto)}}" alt="" width="150px"></td>
+                            {{-- <td><img src="{{Storage::url($b->foto)}}" alt="" width="150px"></td> --}}
                             <td>
                                 <a href="barang/{{$b->id}}" class="btn btn-info btn-sm"><i class="fas fa-pen"></i>Edit</a>
                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter"

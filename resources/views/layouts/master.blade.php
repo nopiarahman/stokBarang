@@ -218,6 +218,20 @@
                 @endif
                 @if (auth()->user()->role == 'karyawan')
                         <li class="nav-item">
+                            <a href="/keluar" class="nav-link @yield('menuKeluar')">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <i class="fas fa-box-open    "></i>
+                                    </div>
+                                    <div class="col-9">
+                                        <p>
+                                            Barang Keluar
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/barang" class="nav-link @yield('menuBarang')">
                                 <div class="row">
                                     <div class="col-2">
@@ -232,7 +246,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/barang" class="nav-link @yield('menuStok')">
+                            <a href="/stok" class="nav-link @yield('menuStok')">
                                 <div class="row">
                                     <div class="col-2">
                                         <i class="fas fa-users" aria-hidden="true"></i>
@@ -306,6 +320,8 @@
     <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="/adminlte/js/demo.js"></script>
+<script src="{{asset('js/daterangepicker.js')}}"></script>
+
     </div>
     </div>
 </body>
