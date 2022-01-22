@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   {{-- <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
   <link rel="stylesheet" href="{{ mix("css/app.css") }}"> --}}
-  <title>STOK BARANG VAN TROPHY</title>
+  <title>PENJUALAN BARANG VAN TROPHY</title>
   <style type="text/css">
   .styled-table {
       border-collapse: collapse;
@@ -41,27 +41,39 @@
   </style>
 </head>
 <body>
-          <h3 style="text-align: center">Riwayat Barang Keluar</h3>
+          <h3 style="text-align: center">Riwayat Penjualan</h3>
         <table class="styled-table">
           <thead>
             <tr>
               <th scope="col">No</th>
               <th scope="col">Tanggal</th>
-              <th scope="col">Nama Barang</th>
-              <th scope="col">Pembeli</th>
-              <th scope="col">Jumlah</th>
-              <th scope="col">Keterangan</th>
+              <th scope="col">Daftar Barang</th>
+              <th scope="col">Total Transaksi</th>
             </tr>
           </thead>
           <tbody>
-            @foreach($barangKeluar as $p)
+            @php
+                $n=1;
+            @endphp
+            @foreach($barangKeluar as $b)
+            @if($b->penjualan()->sum('total') != 0)
             <tr>
-              <td>{{$loop->iteration}}</td>
-              <td>{{$p->tanggal}}</td>
-              <td>{{$p->pembeli}}</td>
-              <td>{{$p->jumlah}}</td>
-              <td>{{$p->keterangan}}</td>
+                <td>{{$n, $n++}}</td>
+                <td>{{Carbon\Carbon::parse($b->tanggal)->isoFormat('DD/MM/YYYY')}}</td>
+                <td>
+                    @foreach($b->penjualan()->get() as $p)
+                    {{$loop->iteration}}. {{$p->barang->nama}} ({{$p->jumlah}} pcs)<br>
+                    @endforeach
+                </td>
+                <td>Rp. {{number_format($b->penjualan()->sum('total'))}}</td>
+                {{-- <td>
+                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter"
+                        data-id="{{$b->id}}"
+                        data-nama="{{$b->pembeli}}"
+                    > <i class="fas fa-trash" aria-hidden="true"></i> Hapus</button>
+                </td> --}}
             </tr>
+            @endif
             @endforeach
           </tbody>
           <tfoot>

@@ -33,6 +33,7 @@ Route::group(['middleware'=>['auth','role:admin,karyawan']],function(){
     Route::get('/barangCetak',[ BarangController::class,'cetak'])->name('barangCetak');
     Route::delete('/barang/{id}',[ BarangController::class,'destroy'])->name('barangHapus');
     Route::patch('/barang/{id}',[ BarangController::class,'update'])->name('barangUpdate');
+    Route::get('/riwayat',[ BarangController::class,'riwayat'])->name('riwayatPenjualan');
     
     Route::get('/supplier',[ SupplierController::class,'index'])->name('supplier');
     Route::get('/supplier/tambah',[ SupplierController::class,'create'])->name('supplierTambah');
@@ -50,6 +51,7 @@ Route::group(['middleware'=>['auth','role:admin,karyawan']],function(){
     Route::get('/keluarCetak',[ BarangController::class,'keluarCetak'])->name('keluarCetak');
     Route::post('/keluar',[ BarangController::class,'keluarSimpan'])->name('barangKeluarSimpan');
     Route::delete('/keluarHapus/{id}',[ BarangController::class,'keluarHapus'])->name('barangKeluarHapus');
+    Route::post('/selesai',[ BarangController::class,'selesaiTransaksi'])->name('selesaiTransaksi');
     
     Route::get('/user',[ UserController::class,'index'])->name('userIndex');
     Route::get('/user/tambah',[ UserController::class,'create'])->name('userTambah');

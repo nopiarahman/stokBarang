@@ -33,6 +33,12 @@
                       <label for="jumlah">Jumlah</label>
                       <input value="{{$id->jumlah}}" name="jumlah" type="text" class="form-control bg-light" id="jumlah"
                           required>
+                          <label for="hargaBeli">Harga Beli</label>
+                      <input value="{{$id->hargaBeli}}" name="hargaBeli" type="text" class="form-control bg-light" id="hargaBeli"
+                          required>
+                      <label for="hargaJual">Harga Jual</label>
+                      <input value="{{$id->hargaJual}}" name="hargaJual" type="text" class="form-control bg-light" id="hargaJual"
+                          required>
                   </div>
                   <div class="col-6">
                       <label for="ukuran">Ukuran</label>
@@ -44,6 +50,10 @@
                       <label for="lokasi">Lokasi</label>
                       <input value="{{$id->lokasi}}" name="lokasi" type="text" class="form-control bg-light"
                           id="lokasi">
+                          <label for="foto">Foto Barang</label>
+                          <img src="{{Storage::url($id->foto)}}" alt="">
+                      <input value="{{old('foto')}}" name="foto" type="file" class="form-control bg-light"
+                          id="foto">
                   </div>
               </div>
               <hr>

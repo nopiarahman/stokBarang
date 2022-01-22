@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\barang;
+use App\Models\penjualan;
 use App\Models\masukBarang;
 use App\Models\keluarBarang;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +48,13 @@ class BarangController extends Controller
             'nama'   => 'required',
         ]);
         $requestData = $request->all();
+        if ($request->hasFile('foto')) {
+            $file_nama            = $request->file('foto')->store('public/barang/foto');
+            $requestData['foto'] = $file_nama;
+            
+        } else {
+            unset($requestData['foto']);
+        }
         $id->update($requestData);
         return redirect()->route('barang')->with('sukses','Data Berhasil Dirubah');
     }
@@ -116,22 +124,22 @@ class BarangController extends Controller
         $id->delete();
         return redirect()->back()->with('sukses','Transaksi Berhasil Dihapus');
     }
-    public function keluarHapus(keluarBarang $id){
+    public function keluarHapus(penjualan $id){
         $stokBarang=barang::find($id->barang_id);
         $stokBarang->update(['jumlah'=>$stokBarang->jumlah+$id->jumlah]);
         $id->delete();
-        return redirect()->back()->with('sukses','Transaksi Berhasil Dihapus');
+        return redirect()->back()->with('sukses','Barang Berhasil Dihapus');
     }
     /* barang keluar */
     public function keluar(Request $request){
-        $start = Carbon::now()->firstOfMonth()->isoFormat('YYYY-MM-DD');
-        $end = Carbon::now()->endOfMonth()->isoFormat('YYYY-MM-DD');
-        if($request->get('filter')){
-            $start = Carbon::parse($request->start)->isoFormat('YYYY-MM-DD');
-            $end = Carbon::parse($request->end)->isoFormat('YYYY-MM-DD');
-        }
-        $barangKeluar = keluarBarang::whereBetween('tanggal',[$start,$end])->get();
-        return view('keluar.keluarIndex',compact('barangKeluar','start','end'));        
+        $baru = keluarBarang::firstOrCreate([
+            'status'=>'open',
+            'tanggal'=>Carbon::now()->isoFormat('YYYY-MM-DD')
+        ]);
+        $barangKeluar = keluarBarang::orderBy('id','DESC')->first();
+        // dd($barangKeluar);
+        $penjualan = penjualan::where('keluar_barang_id',$barangKeluar->id)->get();
+        return view('keluar.keluarIndex',compact('penjualan','barangKeluar'));        
     }
     public function keluarCetak(Request $request){
         $start = Carbon::now()->firstOfMonth()->isoFormat('YYYY-MM-DD');
@@ -147,15 +155,19 @@ class BarangController extends Controller
     public function keluarSimpan(Request $request){
         $request->validate([
             'barang_id'   => 'required',
-            'tanggal'   => 'required',
-            'pembeli'   => 'required',
             'jumlah'   => 'required',
         ]);
+        $barang=barang::find($request->barang_id);
+        $barangKeluar = keluarBarang::orderBy('id','DESC')->first();
         $requestData = $request->all();
+        $requestData['total']=$barang->hargaJual*$request->jumlah;
+        $requestData['keluar_barang_id']=$barangKeluar->id;
+        if($request->jumlah > $barang->jumlah){
+            return redirect()->route('keluar')->with('gagal','Transaksi Gagal, Stok Barang '.$barang->nama.' Tidak Mencukupi, Sisa Stok = '.$barang->jumlah.' buah');
+        }
         try {
             DB::beginTransaction();
-            keluarBarang::create($requestData);
-            $barang=barang::find($request->barang_id);
+            penjualan::create($requestData);
             $barang->update(['jumlah'=>$barang->jumlah-$request->jumlah]);
             DB::commit();
             return redirect()->route('keluar')->with('sukses','Data Berhasil Disimpan');
@@ -171,5 +183,30 @@ class BarangController extends Controller
         $pdf=PDF::loadview('barang.barangCetak',compact('barang'))->setPaper('A4','portait');
         return $pdf->download('Daftar Stok Barang Van Trophy .pdf');
     }
-
+    public function riwayat(Request $request){
+        // dd($request);
+        $start = Carbon::now()->firstOfMonth()->isoFormat('YYYY-MM-DD');
+        $end = Carbon::now()->endOfMonth()->isoFormat('YYYY-MM-DD');
+        if($request->get('filter')){
+            $start = Carbon::parse($request->start)->isoFormat('YYYY-MM-DD');
+            $end = Carbon::parse($request->end)->isoFormat('YYYY-MM-DD');
+        }
+        $barangKeluar = keluarBarang::whereBetween('tanggal',[$start,$end])->orderBy('id','DESC')->get();
+        return view('keluar.riwayat',compact('barangKeluar','start','end'));
+    }
+    public function selesaiTransaksi(){
+        $barangKeluar = keluarBarang::orderBy('id','DESC')->first();
+        // dd($barangKeluar);
+        try {
+            DB::beginTransaction();
+            $barangKeluar->update(['status'=>'closed']);
+            DB::commit();
+            // dd($barangKeluar->penjualan()->get());
+            return view('keluar.struk',compact('barangKeluar'));
+        } catch (\exception $ex) {
+            DB::rollback();
+            //throw $th;
+            dd($ex);
+        }
+    }
 }

@@ -15,14 +15,16 @@ class CreateBarangTable extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('spesifikasi')->nullable();
-            $table->string('lokasi')->nullable();
-            $table->string('kategori')->nullable();
-            $table->string('jumlah')->nullable();
-            $table->string('ukuran')->nullable();
+            $table->string('nama',30);
+            $table->string('spesifikasi',30)->nullable();
+            $table->string('lokasi',30)->nullable();
+            $table->string('kategori',20)->nullable();
+            $table->integer('jumlah')->nullable();
+            $table->string('ukuran',10)->nullable();
             $table->string('berat')->nullable();
             $table->string('foto')->nullable();
+            $table->integer('hargaBeli')->nullable();
+            $table->integer('hargaJual')->nullable();
             $table->timestamps();
         });
     }

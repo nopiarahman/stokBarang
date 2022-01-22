@@ -152,7 +152,7 @@
                                     </div>
                                     <div class="col-9">
                                         <p>
-                                            Barang Keluar
+                                            Penjualan
                                         </p>
                                     </div>
                                 </div>
@@ -225,7 +225,7 @@
                                     </div>
                                     <div class="col-9">
                                         <p>
-                                            Barang Keluar
+                                            Penjualan
                                         </p>
                                     </div>
                                 </div>
@@ -277,7 +277,7 @@
 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                <b>sistem pendataan penjualan dan stok barang Van trophy</b>
+                <b>Sistem pendataan penjualan dan stok barang Van trophy</b>
             </div>
             Copyright &copy; 2021 | by : Satria Duta
         </footer>

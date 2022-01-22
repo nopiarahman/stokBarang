@@ -16,11 +16,8 @@ class CreateKeluarBarangTable extends Migration
     {
         Schema::create('keluar_barang', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(barang::class);
-            $table->dateTime('tanggal');
-            $table->string('pembeli');
-            $table->integer('jumlah');
-            $table->string('keterangan')->nullable();
+            $table->date('tanggal');
+            $table->string('status');
             $table->timestamps();
         });
     }

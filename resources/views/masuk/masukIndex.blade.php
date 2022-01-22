@@ -30,7 +30,7 @@
               <div class="row">
                   <div class="col-6">
                       <label for="tanggalMasuk">Tanggal Masuk</label>
-                      <input value="{{old('tanggalMasuk')}}" name="tanggalMasuk" type="datetime-local" class="form-control bg-light"
+                      <input value="{{old('tanggalMasuk')}}" name="tanggalMasuk" type="date" class="form-control bg-light"
                           id="tanggalMasuk" required>
                       <label for="barang_id">Nama Barang</label>
                       <select class="cari form-control bg-light" name="barang_id" required></select>

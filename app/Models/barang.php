@@ -24,4 +24,13 @@ class barang extends Model
     {
         return $this->hasOne(keluarBarang::class);
     }
+    /**
+     * Get the penjualan associated with the barang
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function penjualan()
+    {
+        return $this->hasOne(penjualan::class);
+    }
 }
