@@ -51,7 +51,7 @@
                           id="lokasi" required>
                       <label for="foto">Foto Barang</label>
                       <input value="{{old('foto')}}" name="foto" type="file" class="form-control bg-light"
-                          id="foto" required>
+                          id="foto">
                   </div>
               </div>
               <hr>
