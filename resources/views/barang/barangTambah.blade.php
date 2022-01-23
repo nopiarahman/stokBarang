@@ -30,13 +30,13 @@
                                       id="kategori">
                       
                       <label for="jumlah">Jumlah</label>
-                      <input value="{{old('jumlah')}}" name="jumlah" type="text" class="form-control bg-light" id="jumlah"
+                      <input value="{{old('jumlah')}}" name="jumlah" type="number" class="form-control bg-light" id="jumlah"
                           required>
                       <label for="hargaBeli">Harga Beli</label>
-                      <input value="{{old('hargaBeli')}}" name="hargaBeli" type="text" class="form-control bg-light" id="hargaBeli"
+                      <input value="{{old('hargaBeli')}}" name="hargaBeli" type="number" class="form-control bg-light" id="hargaBeli"
                           required>
                       <label for="hargaJual">Harga Jual</label>
-                      <input value="{{old('hargaJual')}}" name="hargaJual" type="text" class="form-control bg-light" id="hargaJual"
+                      <input value="{{old('hargaJual')}}" name="hargaJual" type="number" class="form-control bg-light" id="hargaJual"
                           required>
                   </div>
                   <div class="col-6">

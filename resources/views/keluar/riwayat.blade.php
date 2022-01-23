@@ -143,6 +143,7 @@
                         <th>Tanggal</th>
                         <th>Daftar Barang</th>
                         <th>Total Transaksi</th>
+                        <th>Petugas</th>
                         {{-- <th>Aksi</th> --}}
                         </tr>
                     </thead>
@@ -161,6 +162,7 @@
                                 @endforeach
                             </td>
                             <td>Rp. {{number_format($b->penjualan()->sum('total'))}}</td>
+                            <td>{{$b->user->name}}</td>
                             {{-- <td>
                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter"
                                     data-id="{{$b->id}}"

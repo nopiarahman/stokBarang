@@ -49,6 +49,7 @@
               <th scope="col">Tanggal</th>
               <th scope="col">Daftar Barang</th>
               <th scope="col">Total Transaksi</th>
+              <th scope="col">Petugas</th>
             </tr>
           </thead>
           <tbody>
@@ -66,6 +67,8 @@
                     @endforeach
                 </td>
                 <td>Rp. {{number_format($b->penjualan()->sum('total'))}}</td>
+                <td>{{$b->user->name}}</td>
+
                 {{-- <td>
                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter"
                         data-id="{{$b->id}}"

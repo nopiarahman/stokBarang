@@ -59,4 +59,13 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    /**
+     * Get the keluarBarang associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function keluarBarang()
+    {
+        return $this->hasOne(keluarBarang::class);
+    }
 }

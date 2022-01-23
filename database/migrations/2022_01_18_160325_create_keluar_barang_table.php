@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\barang;
+use App\Models\User;
 
 class CreateKeluarBarangTable extends Migration
 {
@@ -16,8 +17,9 @@ class CreateKeluarBarangTable extends Migration
     {
         Schema::create('keluar_barang', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal');
+            $table->date('tanggal')->nullable();
             $table->string('status');
+            $table->foreignIdFor(User::class)->nullable();
             $table->timestamps();
         });
     }

@@ -133,10 +133,13 @@ class BarangController extends Controller
     /* barang keluar */
     public function keluar(Request $request){
         $baru = keluarBarang::firstOrCreate([
-            'status'=>'open',
-            'tanggal'=>Carbon::now()->isoFormat('YYYY-MM-DD')
+            'status'=>'open'
         ]);
         $barangKeluar = keluarBarang::orderBy('id','DESC')->first();
+        $barangKeluar->update([
+            'tanggal'=>Carbon::now()->isoFormat('YYYY-MM-DD'),
+            'user_id'=>auth()->user()->id
+        ]);
         // dd($barangKeluar);
         $penjualan = penjualan::where('keluar_barang_id',$barangKeluar->id)->get();
         return view('keluar.keluarIndex',compact('penjualan','barangKeluar'));        
