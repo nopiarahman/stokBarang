@@ -59,7 +59,8 @@ class BarangController extends Controller
         return redirect()->route('barang')->with('sukses','Data Berhasil Dirubah');
     }
     public function destroy(barang $id){
-        if($id->masukBarang !=null || $id->keluarBarang!=null){
+        // dd($id->penjualan);
+        if($id->masukBarang !=null || $id->penjualan!=null){
             return redirect()->route('barang')->with('sukses','Gagal Hapus Barang, Barang Memiliki Transaksi');
         }
         $id->delete();
